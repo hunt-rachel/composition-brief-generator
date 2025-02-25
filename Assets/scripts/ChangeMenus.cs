@@ -1,0 +1,98 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro; 
+
+public class ChangeMenus : MonoBehaviour
+{
+    public Button goBackButton; //button to return to previous screen
+
+    public TMP_Text titleText; //text for title of screen
+
+    public TMP_Text[] mainTextArr; //array of text in main generator screen (not text in any of the editing menus)
+
+    public TMP_Dropdown listDropdown; //dropdown of titles of editing screens
+    public TMP_Dropdown inspoDropdown; //dropdown of what to be inspired by
+
+    public TMP_InputField userInput; //user input field
+
+    public GameObject scrollView; //scroll view
+
+    public ListManager LM;
+
+    void Start()
+    {
+        goBackButton.interactable = false; //disables go back button as there is no previous screen
+
+        //all parts of editing menu disabled for main menu
+        userInput.interactable = false;
+        userInput.gameObject.SetActive(false);
+        scrollView.gameObject.SetActive(false);
+
+        titleText.text = "Composition Brief Generator";
+    }
+    
+    //returns key for dictionary containing lists
+    //specific to list to be edited for specific editing menu chosen
+    public void goToEditingMenu()
+    {
+        //enables button to return to main screen
+        goBackButton.interactable = true;
+        titleText.text = "Editing: " + getDropdownValue(listDropdown);
+        
+        //enabling editing menu text
+        userInput.gameObject.SetActive(true);
+        scrollView.gameObject.SetActive(true);
+        userInput.interactable = true;
+
+        disableMainText();
+
+        Debug.Log("now editing: " + getDropdownValue(listDropdown));
+
+        //if text, prefab method here
+    }
+
+    //returns to main menu
+    public void goBack()
+    {
+        goBackButton.interactable = false;
+
+        titleText.text = "Composition Brief Generator";
+
+        userInput.interactable = false;
+        userInput.gameObject.SetActive(false);
+        scrollView.gameObject.SetActive(false);
+
+        enableMainText();
+
+        Debug.Log("going back");
+    }
+
+    //gets text for editing menu title
+    public string getDropdownValue(TMP_Dropdown dropdown)
+    {
+        return dropdown.options[dropdown.value].text; 
+    }
+
+    public void disableMainText()
+    {
+        foreach (var text in mainTextArr)
+        {
+            text.enabled = false;
+        }
+
+        inspoDropdown.gameObject.SetActive(false);
+    }
+
+    public void enableMainText()
+    {
+        foreach (var text in mainTextArr)
+        {
+            text.enabled = true;
+        }
+
+        inspoDropdown.gameObject.SetActive(true);
+    }
+
+}
