@@ -23,6 +23,9 @@ public class GenerateBrief : MonoBehaviour
     //key signature lists
     string[] keyScale = { "C", "C# /Db", "D", "D# /Eb", "E", "F", "F# /Gb", "G", "G# /Ab", "A", "A# /Bb", "B" };
     string[] keyTonality = {"Major", "Minor", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian", "Locrian"};
+
+    //length list
+    string[] lengths = { "16 bars", "32 bars", "64 bars", "72 bars", "88 bars", "1 minute", "2 minutes", "3 minutes", "4 minutes", "5 minutes" };
     
     public void generateBrief()
     {
@@ -30,7 +33,7 @@ public class GenerateBrief : MonoBehaviour
         //probabilites fixed to make common time signatures more likely, but still chance for complex time signature. 
         timeSigText.text = generateTimeSig();
         
-        //generated key signature - CHANGE TO ALTER PROBABILITIES
+        //generated key signature
         keySigText.text = keyScale[Random.Range(0, keyScale.Length)] + " " + keyTonality[Random.Range(0, keyTonality.Length)];
 
         //generated instrumentation
@@ -43,7 +46,8 @@ public class GenerateBrief : MonoBehaviour
             instText.text = LM.instrumentationList[Random.Range(0, LM.instrumentationList.Count)];
         }
 
-        //length text here
+        //generated length
+        lengthText.text = lengths[Random.Range(0, lengths.Length)];
 
         //generated purpose
         if (LM.purposeList.Count == 0)
