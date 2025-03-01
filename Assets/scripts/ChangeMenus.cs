@@ -7,6 +7,7 @@ using TMPro;
 public class ChangeMenus : MonoBehaviour
 {
     public Button goBackButton; //button to return to previous screen
+    public Button generateBriefButton; //button to generate brief
 
     public TMP_Text titleText; //text for title of screen
 
@@ -24,6 +25,7 @@ public class ChangeMenus : MonoBehaviour
     void Start()
     {
         goBackButton.interactable = false; //disables go back button as there is no previous screen
+        generateBriefButton.interactable = true;
 
         //all parts of editing menu disabled for main menu
         userInput.interactable = false;
@@ -39,6 +41,8 @@ public class ChangeMenus : MonoBehaviour
     {
         //enables button to return to main screen
         goBackButton.interactable = true;
+        generateBriefButton.interactable = false;
+
         titleText.text = "Editing: " + getDropdownValue(listDropdown);
         
         //enabling editing menu text
@@ -57,6 +61,7 @@ public class ChangeMenus : MonoBehaviour
     public void goBack()
     {
         goBackButton.interactable = false;
+        generateBriefButton.interactable = true;
 
         titleText.text = "Composition Brief Generator";
 
