@@ -9,7 +9,7 @@ public class ChangeMenus : MonoBehaviour
     public Button goBackButton; //button to return to previous screen
     public Button generateBriefButton; //button to generate brief
 
-    public TMP_Text titleText; //text for title of screen
+    public TMP_Text titleText; //text for title of 
 
     public TMP_Text[] mainTextArr; //array of text in main generator screen (not text in any of the editing menus)
 
@@ -21,6 +21,14 @@ public class ChangeMenus : MonoBehaviour
     public GameObject scrollView; //scroll view
 
     public ListManager LM;
+
+    //for list instantiation
+    public GameObject contentParent;
+    public GameObject listItemPrefab;
+    public int testAmt;
+    public Vector3 currPosition;
+    public Vector3 direction;
+    public float spacing;
 
     void Start()
     {
@@ -55,6 +63,21 @@ public class ChangeMenus : MonoBehaviour
         Debug.Log("now editing: " + getDropdownValue(listDropdown));
 
         //if text, prefab method here
+        instantiateEditingList();
+    }
+
+    public void instantiateEditingList()
+    {
+        currPosition = contentParent.transform.position;
+        Debug.Log("curr pos 0: " + ": " + currPosition);
+        
+        for (int i = 0; i < testAmt; i++)
+        {
+            GameObject listItem = Instantiate(listItemPrefab, currPosition, Quaternion.identity, contentParent.transform);
+
+            currPosition += new Vector3(0, spacing, 0);
+            Debug.Log("curr pos: " + i + ": " + currPosition);
+        }
     }
 
     //returns to main menu
