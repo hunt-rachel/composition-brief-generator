@@ -26,13 +26,14 @@ public class GenerateBrief : MonoBehaviour
     
     public void generateBrief()
     {
-        float numOfBeats = Random.Range(3, 13);
-        string beatNum = numOfBeats.ToString();
-        string beatType = typeOfBeat[Random.Range(0,typeOfBeat.Length)].ToString();
-
-        timeSigText.text = beatNum + "/" + beatType;
+        //generated time signature
+        //probabilites fixed to make common time signatures more likely, but still chance for complex time signature. 
+        timeSigText.text = generateTimeSig();
+        
+        //generated key signature - CHANGE TO ALTER PROBABILITIES
         keySigText.text = keyScale[Random.Range(0, keyScale.Length)] + " " + keyTonality[Random.Range(0, keyTonality.Length)];
 
+        //generated instrumentation
         if (LM.instrumentationList.Count == 0) {
             instText.text = "No instrumentation added yet!";
         }
@@ -44,6 +45,7 @@ public class GenerateBrief : MonoBehaviour
 
         //length text here
 
+        //generated purpose
         if (LM.purposeList.Count == 0)
         {
             purposeText.text = "No purpose added yet!";
@@ -55,5 +57,27 @@ public class GenerateBrief : MonoBehaviour
         }
 
         //figure out how to do inspo based on drop down selection
+    }
+
+    //generates complex time signatures at random given specific ranges to allow for feasability
+    public string generateComplexTimeSig()
+    {
+        float numOfBeats = Random.Range(3, 13);
+        string beatNum = numOfBeats.ToString();
+        string beatType = typeOfBeat[Random.Range(0, typeOfBeat.Length)].ToString();
+
+        string complexTimeSig = beatNum + "/" + beatType;
+
+        return complexTimeSig;
+    }
+
+    //rigs probability for users so more common time signatures are more likely, but complex ones aren't impossible
+    public string generateTimeSig()
+    {
+        string[] timesToChooseFrom = {"4/4", "3/4", "6/8", generateComplexTimeSig()};
+
+        string timeSig = timesToChooseFrom[Random.Range(0, timesToChooseFrom.Length)]; 
+        
+        return timeSig;
     }
 }
