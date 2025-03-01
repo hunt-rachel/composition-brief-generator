@@ -28,10 +28,7 @@ public class ListManager : MonoBehaviour
     // Adds all lists to a master list dictionary for reference when choosing editing menu
     private void CompileMasterList()
     {
-        //masterList.Add("Time Signature", timeSignatureList);
-        //masterList.Add("Key Signature", keySignatureList);
         masterList.Add("Instrumentation", instrumentationList);
-        //masterList.Add("Length", lengthList);
         masterList.Add("Purpose", purposeList);
         masterList.Add("Game", gameList);
         masterList.Add("Composer", composerList);
