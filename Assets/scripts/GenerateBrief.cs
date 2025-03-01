@@ -14,6 +14,8 @@ public class GenerateBrief : MonoBehaviour
     public TMP_Text purposeText;
     public TMP_Text inspoText;
 
+    public TMP_Dropdown inspoDropdown;
+
     public ListManager LM;
 
     //non-user defined lists
@@ -60,7 +62,9 @@ public class GenerateBrief : MonoBehaviour
             purposeText.text = LM.purposeList[Random.Range(0, LM.purposeList.Count)];
         }
 
-        //figure out how to do inspo based on drop down selection
+        //generated inspiration
+        inspoText.text = generateInspo();
+
     }
 
     //generates complex time signatures at random given specific ranges to allow for feasability
@@ -83,5 +87,35 @@ public class GenerateBrief : MonoBehaviour
         string timeSig = timesToChooseFrom[Random.Range(0, timesToChooseFrom.Length)]; 
         
         return timeSig;
+    }
+
+    public string generateInspo()
+    {
+        string inspo = "";
+
+        switch(inspoDropdown.options[inspoDropdown.value].text)
+        {
+            case "Game":
+                Debug.Log("inspo dropdown is game");
+                inspo = LM.gameList[Random.Range(0, LM.gameList.Count)];
+                break;
+
+            case "Composer":
+                Debug.Log("inspo dropdown is composer");
+                inspo = LM.composerList[Random.Range(0, LM.composerList.Count)];
+                break;
+
+            case "Genre":
+                Debug.Log("inspo dropdown is genre");
+                inspo = LM.genreList[Random.Range(0, LM.genreList.Count)];
+                break;
+
+            default:
+                Debug.Log("default - choose option");
+                inspo = "Choose an option from the dropdown below!";
+                break;
+        }
+
+        return inspo;
     }
 }

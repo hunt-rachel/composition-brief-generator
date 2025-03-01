@@ -1288,11 +1288,17 @@ MonoBehaviour:
   titleText: {fileID: 1757058718}
   mainTextArr:
   - {fileID: 1815029616}
+  - {fileID: 203964209}
   - {fileID: 824615649}
+  - {fileID: 543362552}
   - {fileID: 1592086684}
+  - {fileID: 994964255}
   - {fileID: 162598443}
+  - {fileID: 1119121964}
   - {fileID: 1184245819}
+  - {fileID: 1466921241}
   - {fileID: 1305127361}
+  - {fileID: 47393997}
   listDropdown: {fileID: 1371191806}
   inspoDropdown: {fileID: 1596281551}
   userInput: {fileID: 830773421}
@@ -1334,6 +1340,7 @@ MonoBehaviour:
   lengthText: {fileID: 1119121964}
   purposeText: {fileID: 1466921241}
   inspoText: {fileID: 47393997}
+  inspoDropdown: {fileID: 1596281551}
   LM: {fileID: 315717896}
 --- !u!1 &347397254
 GameObject:
