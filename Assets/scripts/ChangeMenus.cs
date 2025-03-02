@@ -21,6 +21,8 @@ public class ChangeMenus : MonoBehaviour
 
     public ListManager LM;
 
+    public List<string> editingList = new List<string>();
+
     //for list instantiation
     public GameObject contentParent;
     public GameObject listItemPrefab;
@@ -76,7 +78,7 @@ public class ChangeMenus : MonoBehaviour
     public void instantiateList(string dropdown)
     {
         //gets associated list from dropdown selection
-        List<string> editingList = findListToShow(dropdown);
+        editingList = findListToShow(dropdown);
         Debug.Log("editing list first index: " + editingList[0]); //debugging to check correct list found
         
         currPosition = contentParent.transform.position;

@@ -59,5 +59,7 @@ public class UIActions : MonoBehaviour
         LM.masterList[activeTitle].Add(input);
 
         //instantiate prefab of input here
+        CM.clearListSpace();
+        CM.instantiateList(activeTitle);
     }
 }
