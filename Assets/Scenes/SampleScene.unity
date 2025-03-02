@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 315717892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17ea98703eacaf84ab9c023558e73fbb, type: 3}
+  m_Script: {fileID: 11500000, guid: b03006fff57d7b544a4b3e10124dc06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   goBackButton: {fileID: 267674045}
@@ -1305,6 +1305,7 @@ MonoBehaviour:
   userInput: {fileID: 830773421}
   scrollView: {fileID: 1009890989}
   LM: {fileID: 315717896}
+  editingList: []
   contentParent: {fileID: 1357209960}
   listItemPrefab: {fileID: 2677450016158500196, guid: 94c000996c4755143a6d5a035219ce07, type: 3}
   testAmt: 20
@@ -5006,7 +5007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: -180
     m_Right: 0
     m_Top: 0
     m_Bottom: 0

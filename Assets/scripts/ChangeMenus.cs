@@ -22,6 +22,8 @@ public class ChangeMenus : MonoBehaviour
 
     public ListManager LM;
 
+    public List<string> editingList = new List<string>();
+
     //for list instantiation
     public GameObject contentParent;
     public GameObject listItemPrefab;
@@ -62,22 +64,70 @@ public class ChangeMenus : MonoBehaviour
 
         Debug.Log("now editing: " + getDropdownValue(listDropdown));
 
-        //if text, prefab method here
-        instantiateEditingList();
+        //clears content space for instantiation
+        clearListSpace();
+        
+        //instantiates relevant list as prefab
+        instantiateList(getDropdownValue(listDropdown));
     }
 
-    public void instantiateEditingList()
+    public void clearListSpace()
     {
-        currPosition = contentParent.transform.position;
-        Debug.Log("curr pos 0: " + ": " + currPosition);
+        foreach (Transform child in contentParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    
+    public void instantiateList(string dropdown)
+    {
+        //gets associated list from dropdown selection
+        editingList = findListToShow(dropdown);
+        Debug.Log("editing list first index: " + editingList[0]); //debugging to check correct list found
         
-        for (int i = 0; i < testAmt; i++)
+        currPosition = contentParent.transform.position;
+        
+        for (int i = 0; i < editingList.Count; i++)
         {
             GameObject listItem = Instantiate(listItemPrefab, currPosition, Quaternion.identity, contentParent.transform);
 
+            listItem.GetComponentInChildren<TMP_Text>().text = editingList[i];
+
             currPosition += new Vector3(0, spacing, 0);
-            Debug.Log("curr pos: " + i + ": " + currPosition);
         }
+    }
+
+    public List<string> findListToShow(string dropdown)
+    {
+        List<string> listToShow = new List<string>();
+
+        switch(dropdown) {
+            case "Instrumentation":
+                listToShow = LM.instrumentationList;
+                break;
+
+            case "Purpose":
+                listToShow = LM.purposeList;
+                break;
+
+            case "Game":
+                listToShow = LM.gameList;
+                break;
+
+            case "Composer":
+                listToShow = LM.composerList;
+                break;
+
+            case "Genre":
+                listToShow = LM.genreList;
+                break;
+
+            default:
+                Debug.Log("list to instantiate not found");
+                break;
+        }
+
+        return listToShow;
     }
 
     //returns to main menu
