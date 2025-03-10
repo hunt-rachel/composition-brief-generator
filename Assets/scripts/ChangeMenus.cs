@@ -83,7 +83,6 @@ public class ChangeMenus : MonoBehaviour
     {
         //gets associated list from dropdown selection
         editingList = findListToShow(dropdown);
-        Debug.Log("editing list first index: " + editingList[0]); //debugging to check correct list found
         
         currPosition = contentParent.transform.position;
         

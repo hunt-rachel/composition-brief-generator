@@ -44,8 +44,8 @@ public class ListManager : MonoBehaviour
     //uses information from master list dictionary to create keys for player prefs
     //string list concatenated into string using "###" as highly unlikely this will be used in actual text input by user
     private void SaveLists()
-    {
-        foreach(string key in masterList.Keys)
+    {   
+        foreach (string key in masterList.Keys)
         {
             if (masterList[key].Count > 0)
             {
@@ -55,6 +55,7 @@ public class ListManager : MonoBehaviour
 
             else
             {
+                PlayerPrefs.SetString(key, "");
                 continue;
             }
             
@@ -76,7 +77,15 @@ public class ListManager : MonoBehaviour
 
                 foreach (string str in stringArr)
                 {
-                    masterList[key].Add(str);
+                    if (str == "")
+                    {
+                        continue;
+                    }
+
+                    else
+                    {
+                        masterList[key].Add(str);
+                    }    
                 }
             }
 
