@@ -35,11 +35,6 @@ public class ListManager : MonoBehaviour
         masterList.Add("Genre", genreList);
     }
 
-    private void deleteFromList(string toDelete, List<string> list)
-    {
-        list.Remove(toDelete);
-    }
-
     void OnApplicationQuit()
     {
         SaveLists();
