@@ -92,9 +92,22 @@ public class ChangeMenus : MonoBehaviour
             GameObject listItem = Instantiate(listItemPrefab, currPosition, Quaternion.identity, contentParent.transform);
 
             listItem.GetComponentInChildren<TMP_Text>().text = editingList[i];
+            //assigns specific text and list relevance to each instantiated object to help with potential deletion later. 
+            listItem.GetComponent<ListItem>().itemText = editingList[i];
+            listItem.GetComponent<ListItem>().itemList = editingList;
+
+            //assigns delete function to prefab button
+            listItem.GetComponentInChildren<Button>().onClick.AddListener(() => deleteFromList(listItem.GetComponent<ListItem>().itemText, listItem.GetComponent<ListItem>().itemList));
 
             currPosition += new Vector3(0, spacing, 0);
         }
+    }
+
+    public void deleteFromList(string toDelete, List<string> list)
+    {
+        list.Remove(toDelete);
+        clearListSpace();
+        instantiateList(getDropdownValue(listDropdown));
     }
 
     public List<string> findListToShow(string dropdown)
