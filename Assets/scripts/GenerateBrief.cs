@@ -27,7 +27,7 @@ public class GenerateBrief : MonoBehaviour
     string[] keyTonality = {"Major", "Minor", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian", "Locrian"};
 
     //length list
-    string[] lengths = { "16 bars", "32 bars", "64 bars", "72 bars", "88 bars", "1 minute", "2 minutes", "3 minutes", "4 minutes", "5 minutes" };
+    string[] lengths = { "16 bars", "24 bars", "32 bars", "48 bars", "64 bars", "72 bars", "80 bars", "88 bars", "128 bars", "30 seconds", "1 minute", "2 minutes", "3 minutes", "4 minutes", "5 minutes", "6 minutes" };
     
     public void generateBrief()
     {
@@ -97,17 +97,44 @@ public class GenerateBrief : MonoBehaviour
         {
             case "Game":
                 Debug.Log("inspo dropdown is game");
-                inspo = LM.gameList[Random.Range(0, LM.gameList.Count)];
+
+                if (LM.gameList.Count == 0)
+                {
+                    inspo = "No games added yet!";
+                }
+                else
+                {
+                    inspo = LM.gameList[Random.Range(0, LM.gameList.Count)];
+                }
+
                 break;
 
             case "Composer":
                 Debug.Log("inspo dropdown is composer");
-                inspo = LM.composerList[Random.Range(0, LM.composerList.Count)];
+
+                if (LM.composerList.Count == 0)
+                {
+                    inspo = "No composers added yet!";
+                }
+                else
+                {
+                    inspo = LM.composerList[Random.Range(0, LM.composerList.Count)];
+                }
+
                 break;
 
             case "Genre":
                 Debug.Log("inspo dropdown is genre");
-                inspo = LM.genreList[Random.Range(0, LM.genreList.Count)];
+
+                if (LM.genreList.Count == 0)
+                {
+                    inspo = "No genres added yet!";
+                }
+                else
+                {
+                    inspo = LM.genreList[Random.Range(0, LM.genreList.Count)];
+                }
+
                 break;
 
             default:
